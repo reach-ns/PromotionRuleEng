@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace PromotionClient
 {
@@ -13,41 +14,19 @@ namespace PromotionClient
               
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
+          
             var priceData = GetPriceCatalogues();
             foreach (var v in priceData)
             {
                 Console.WriteLine(v.Id + "\t" + v.Name + "\t" + v.Price);
             }
 
-            var promo_list = GetPromotions();
-            List<OrderViewModel> OrderList = new List<OrderViewModel>();
+            var promo_list = GetPromotions();                  
+            double total = GetTotalAmount(priceData, promo_list);
 
-            // Accept User input
-            foreach (var v in priceData)
-            {
-                Console.WriteLine(v.Id + "\t" + v.Name);
-                int.TryParse(Console.ReadLine(), out int Qty);
-                OrderViewModel orderViewModel = new OrderViewModel()
-                {
-                    Id = v.Id,
-                    Quantity = Qty
-                };
-                OrderList.Add(orderViewModel);
-                Console.WriteLine("----------------------");
-            }
+            Console.WriteLine("Total Amount=" + total);
 
 
-           
-
-         
-            foreach (var v in OrderList)
-            {
-                Console.WriteLine(v.Id + "\t" + v.Quantity + "\t" + v.FinalPrice);
-            }
-            double totalValue = OrderList.Sum(item => item.FinalPrice);
-            Console.WriteLine("===============Total=" + totalValue);
         }
 
 
@@ -96,7 +75,7 @@ namespace PromotionClient
         }
 
 
-        public List<OrderViewModel> CalculatePromotion(List<Catalogue> priceData, List<Promotions> promotion, List<OrderViewModel> OrderList)
+        public static List<OrderViewModel> CalculatePromotion(List<Catalogue> priceData, List<Promotions> promotion, List<OrderViewModel> OrderList)
         {
 
             if (promotion.Any() && priceData.Any() && OrderList.Any())
@@ -186,6 +165,45 @@ namespace PromotionClient
             return OrderList;
         }
 
+        public static double GetTotalAmount(List<Catalogue> priceData, List<Promotions> promotion)
+        {
+            double totalValue = 0;
+            List<OrderViewModel> OrderList = new List<OrderViewModel>();
+
+            foreach (var v in priceData)
+            {
+                Console.WriteLine(v.Id + "\t" + v.Name);
+                int.TryParse(Console.ReadLine(), out int Qty);
+                OrderViewModel orderViewModel = new OrderViewModel()
+                {
+                    Id = v.Id,
+                    Quantity = Qty
+                };
+                OrderList.Add(orderViewModel);
+              
+            }
+
+            if (OrderList.Any())
+            {
+                OrderList = CalculatePromotion(priceData, promotion, OrderList);
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                foreach (var v in OrderList)
+                {
+                    Console.WriteLine(v.Id + "\t" + v.Quantity + "\t" + v.FinalPrice);
+                }
+
+                Console.ResetColor();
+                totalValue = OrderList.Sum(item => item.FinalPrice);
+              
+
+
+            }
+
+
+            return totalValue;
+               
+        }
 
     }
 }
