@@ -1,0 +1,25 @@
+{
+  "promotions": [
+    {
+      "id": 1,
+      "catalogueId": 1,
+      "units": 3,
+      "price": 130,
+      "secondaryId": null
+    },
+    {
+      "id": 2,
+      "catalogueId": 2,
+      "units": 2,
+      "price": 45,
+      "secondaryId": null
+    },
+    {
+      "id": 3,
+      "catalogueId": 3,
+      "units": 1,
+      "price": 30,
+      "secondaryId": 4
+    }
+  ]
+}
