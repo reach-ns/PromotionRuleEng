@@ -7,7 +7,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace PromotionClient
 {
-    class Program
+   public class Program
     {
         static string PromotionFilePath = "PromotionData/Promotions.json";
         static string CatalogueFilePath = "PromotionData/Catalogue.json";

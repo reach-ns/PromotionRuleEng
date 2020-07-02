@@ -1,0 +1,26 @@
+{
+  "catalogue": [
+    {
+      "id": 1,
+      "name": "A",
+      "price": 50
+    },
+    {
+      "id": 2,
+      "name": "B",
+      "price": 30
+    },
+    {
+      "id": 3,
+      "name": "C",
+      "price": 20
+    },
+    {
+      "id": 4,
+      "name": "D",
+      "price": 15
+    }
+
+
+  ]
+}
