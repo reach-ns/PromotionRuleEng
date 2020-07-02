@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "m6TiUqjFaZwIBepw8+970G87E3HHRxf/SchMn0qng1J7K+G/j3JQ02LhM4SNSrGgNgsAnCU6RVDRo6Piw+ByiQ==",
+  "dgSpecHash": "o07gos1zYSikTwVvsNS0A3A07iAGOenHqbZ76l/rKUKkbyetos24pOt9bWdGfON/AzjpgT17xWuIZwfTqmdMxw==",
   "success": true,
   "projectFilePath": "D:\\Practice\\Assignment\\PromotionRuleEng\\PromotionClient\\PromotionClient.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Nandish.Siddaramappa\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

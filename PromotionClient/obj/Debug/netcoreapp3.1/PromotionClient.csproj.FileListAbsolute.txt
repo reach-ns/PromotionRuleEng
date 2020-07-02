@@ -1,0 +1,17 @@
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.exe
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.csprojAssemblyReference.cache
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.AssemblyInfoInputs.cache
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.AssemblyInfo.cs
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.csproj.CoreCompileInputs.cache
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionData\Catalogue.json
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionData\Promotions.json
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.deps.json
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.runtimeconfig.json
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.runtimeconfig.dev.json
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.dll
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\PromotionClient.pdb
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.csproj.CopyComplete
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.dll
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.pdb
+D:\Practice\Assignment\PromotionRuleEng\PromotionClient\obj\Debug\netcoreapp3.1\PromotionClient.genruntimeconfig.cache
