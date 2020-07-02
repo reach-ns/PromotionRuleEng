@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PromotionClient
 {
@@ -19,6 +20,8 @@ namespace PromotionClient
             {
                 Console.WriteLine(v.Id + "\t" + v.Name + "\t" + v.Price);
             }
+
+            List<OrderViewModel> OrderList = new List<OrderViewModel>();
         }
 
 
@@ -67,7 +70,95 @@ namespace PromotionClient
         }
 
 
-     
+        public List<OrderViewModel> CalculatePromotion(List<Catalogue> priceData, List<Promotions> promotion, List<OrderViewModel> OrderList)
+        {
+
+            if (promotion.Any() && priceData.Any() && OrderList.Any())
+            {
+                foreach (var v in priceData)
+                {
+                    var priceForA = OrderList.Where(x => x.Id == v.Id).Select(x => x.Quantity).FirstOrDefault();
+                    if (priceForA != 0)
+                    {
+                        var promotions = promotion.FirstOrDefault(x => x.CatalogueId == v.Id && x.SecondaryId == null);
+                        if (promotions != null && promotions.Units <= priceForA)
+                        {
+                            int temp = priceForA % promotions.Units;
+                            int stdPrice = v.Price * temp;
+                            int itemsToApply = (priceForA - temp) / promotions.Units;
+                            int offerPrice = itemsToApply * promotions.Price;
+                            int Total = offerPrice + stdPrice;
+
+                            foreach (var o in OrderList.Where(x => x.Id == v.Id))
+                            {
+                                o.FinalPrice = Total;
+                            }
+                        }
+                        else
+                        {
+                            int total = priceForA * v.Price;
+                            foreach (var o in OrderList.Where(x => x.Id == v.Id))
+                            {
+                                o.FinalPrice = total;
+                            }
+                        }
+                    }
+                }
+
+
+                var combo = promotion.Where(x => x.SecondaryId != null);
+
+                foreach (var cp in combo)
+                {
+                    var comboItemIds = new List<int>();
+                    comboItemIds.Add(cp.Id);
+                    comboItemIds.Add(cp.SecondaryId.Value);
+
+
+
+                    if (OrderList.Any(x => x.Id == cp.Id && x.Quantity > 0) && OrderList.Any(y => y.Id == cp.SecondaryId.Value && y.Quantity > 0))
+                    {
+                        var orderLocalPrimary = OrderList.FirstOrDefault(x => x.Id == cp.Id); // Get the primary ITem
+
+                        // Get the Count which doesnt fall under combo
+                        int tempC = orderLocalPrimary.Quantity > cp.Units ? orderLocalPrimary.Quantity - cp.Units : cp.Units - orderLocalPrimary.Quantity;
+                        int tempCprice = tempC * (promotion.FirstOrDefault(x => x.Id == orderLocalPrimary.Id).Price);
+
+                        // Now calculate for the remaining by attaching the combo
+
+                        int comboC = cp.Price;
+
+                        int primaryItemsPiceTag = tempCprice + comboC;
+
+                        // Now check for the Secondary Items
+
+                        var orderLocalSecondary = OrderList.FirstOrDefault(x => x.Id == cp.SecondaryId); // Get the primary ITem
+
+                        int secondaryCount = orderLocalSecondary.Quantity > cp.Units ? orderLocalSecondary.Quantity - cp.Units : cp.Units - orderLocalSecondary.Quantity;
+
+                        // Apply standard price for the Secondary
+
+                        int tempDprice = secondaryCount * (promotion.FirstOrDefault(x => x.SecondaryId == orderLocalSecondary.Id).Price);
+                        int tempDTotal = tempDprice;
+
+                        // Update Prices for primary
+                        foreach (var v in OrderList.Where(x => x.Id == orderLocalPrimary.Id))
+                        {
+                            v.FinalPrice = primaryItemsPiceTag;
+                        }
+
+                        //update prices for secondary
+                        foreach (var v in OrderList.Where(x => x.Id == orderLocalSecondary.Id))
+                        {
+                            v.FinalPrice = tempDTotal;
+                        }
+                    }
+
+                }
+            }
+
+            return OrderList;
+        }
 
 
     }
