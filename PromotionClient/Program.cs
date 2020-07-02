@@ -21,7 +21,33 @@ namespace PromotionClient
                 Console.WriteLine(v.Id + "\t" + v.Name + "\t" + v.Price);
             }
 
+            var promo_list = GetPromotions();
             List<OrderViewModel> OrderList = new List<OrderViewModel>();
+
+            // Accept User input
+            foreach (var v in priceData)
+            {
+                Console.WriteLine(v.Id + "\t" + v.Name);
+                int.TryParse(Console.ReadLine(), out int Qty);
+                OrderViewModel orderViewModel = new OrderViewModel()
+                {
+                    Id = v.Id,
+                    Quantity = Qty
+                };
+                OrderList.Add(orderViewModel);
+                Console.WriteLine("----------------------");
+            }
+
+
+           
+
+         
+            foreach (var v in OrderList)
+            {
+                Console.WriteLine(v.Id + "\t" + v.Quantity + "\t" + v.FinalPrice);
+            }
+            double totalValue = OrderList.Sum(item => item.FinalPrice);
+            Console.WriteLine("===============Total=" + totalValue);
         }
 
 
@@ -51,7 +77,7 @@ namespace PromotionClient
         /// </summary>
         /// <returns></returns>
 
-        public static List<Promotions> GetAllPromotions()
+        public static List<Promotions> GetPromotions()
         {
 
             string PromotionData = string.Empty;
